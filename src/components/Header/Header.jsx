@@ -15,7 +15,6 @@ const Header = () => {
       <div className={style.search}>
         <svg
           className={style.search__icon}
-          class="Search_icon__XMmYc"
           enableBackground="new 0 0 32 32"
           id="EditableLine"
           version="1.1"
@@ -66,7 +65,7 @@ const Header = () => {
             <path
               d="M14.3333 16.3333C15.0697 16.3333 15.6667 15.7364 15.6667 15C15.6667 14.2636 15.0697 13.6667 14.3333 13.6667C13.597 13.6667 13 14.2636 13 15C13 15.7364 13.597 16.3333 14.3333 16.3333Z"
               stroke="white"
-              strostrokeWidth="1.8"
+              strokeWidth="1.8"
               strokeLinecap="round"
               strokeLinejoin="round"></path>
             <path

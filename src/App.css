@@ -2,12 +2,15 @@
   text-align: center;
   width: 100%;
   max-width: 1180px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin: 40px auto;
   border-radius: 20px;
-  padding: 40px;
+  padding: 0 40px;
 }
-
+.content {
+  display: flex;
+  justify-content: space-between;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
