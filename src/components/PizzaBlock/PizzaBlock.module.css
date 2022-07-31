@@ -1,0 +1,65 @@
+.pizza__block {
+  width: 280px;
+  margin-bottom: 20px;
+}
+.image {
+  width: 200px;
+}
+.title {
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+.characteristics {
+  background-color: rgb(237, 234, 230);
+  padding: 8px;
+  border-radius: 8px;
+}
+.pizza__types {
+  display: flex;
+  margin-bottom: 8px;
+}
+.pizza__type {
+  flex: 1 1;
+  padding: 8px;
+  border-radius: 8px;
+}
+.sizes {
+  display: flex;
+  justify-content: space-between;
+}
+.size {
+  flex: 1 1;
+  padding: 8px;
+  border-radius: 8px;
+}
+.price__block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+.price {
+  font-size: 22px;
+  font-weight: 700;
+}
+.btn {
+  padding: 10px 20px;
+  border: 2px solid rgb(39, 203, 203);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  color: rgb(39, 203, 203);
+  font-size: 16px;
+}
+.btn:hover {
+  background-color: rgb(39, 203, 203);
+  color: #fff;
+}
+.plus {
+  font-size: 23px;
+  margin-right: 5px;
+}
+.active {
+  background-color: #fff;
+}

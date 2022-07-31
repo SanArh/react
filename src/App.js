@@ -1,18 +1,12 @@
 import './App.css';
-import Categories from './components/Categories/Categories';
 import Header from './components/Header/Header';
-import PizzaBlock from './components/PizzaBlock/PizzaBlock';
-import Sort from './components/Sort/Sort';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <div className="content">
-        <Categories />
-        <Sort />
-      </div>
-      <PizzaBlock />
+      <Home />
     </div>
   );
 }

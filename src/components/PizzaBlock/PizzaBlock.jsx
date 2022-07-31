@@ -1,19 +1,47 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPizzas } from '../../redux/slices/pizzaSlice';
+import React, { useState } from 'react';
 import style from './PizzaBlock.module.css';
+import classNames from 'classnames';
 
-const PizzaBlock = () => {
-  const pizzas = useSelector((state) => state.pizzas.items);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getPizzas());
-  }, []);
+const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types }) => {
+  const pizzaTypes = ['тонкое', 'традиционное'];
+  const [activeType, setActiveType] = useState(0);
+  const [activeSize, setActiveSize] = useState(0);
+
   return (
-    <div>
-      {pizzas.map((item) => (
-        <img key={item.id} src={item.imageUrl}></img>
-      ))}
+    <div className={style.pizza__block}>
+      <img className={style.image} src={imageUrl} alt="pizza" />
+      <h4 className={style.title}>{title}</h4>
+      <div className={style.characteristics}>
+        <div className={style.pizza__types}>
+          {types.map((id) => (
+            <span
+              onClick={() => setActiveType(id)}
+              className={classNames(id === activeType ? style.active : '', style.pizza__type)}
+              key={id}>
+              {pizzaTypes[id]}
+            </span>
+          ))}
+        </div>
+        <div className={style.sizes}>
+          {sizes
+            ? sizes.map((size, id) => (
+                <div
+                  className={classNames(id === activeSize ? style.active : '', style.size)}
+                  key={size}
+                  onClick={() => setActiveSize(id)}>
+                  {size} см.
+                </div>
+              ))
+            : null}
+        </div>
+      </div>
+      <div className={style.price__block}>
+        <div className={style.price}>от {price} ₽</div>
+        <button className={style.btn}>
+          <span className={style.plus}>+</span>
+          <span>Добавить</span>
+        </button>
+      </div>
     </div>
   );
 };
