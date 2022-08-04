@@ -1,17 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './Sort.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSort } from '../../redux/slices/filterSlice';
 
 const Sort = () => {
   const refSort = useRef(null);
 
-  const sortList = ['популярности', 'цене', 'алфавиту'];
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(sortList[0]);
+  const sortList = [
+    { name: 'популярности', sortValue: 'rating' },
+    { name: 'цене', sortValue: 'price' },
+    { name: 'алфавиту', sortValue: 'title' },
+  ];
 
-  const changeSelected = (item) => {
-    setSelected(item);
+  const dispatch = useDispatch();
+  const sort = useSelector((state) => state.filter.sort);
+
+  const [open, setOpen] = useState(false);
+
+  const changeSelected = (obj) => {
     setOpen(false);
+    dispatch(setSort(obj));
   };
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.path.includes(refSort.current)) {
@@ -23,20 +33,21 @@ const Sort = () => {
       document.body.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
   return (
     <div ref={refSort} className={style.menu}>
       <span className={style.menu__title}>Сортировка по:</span>
       <span className={style.selected} onClick={() => setOpen(!open)}>
-        {selected}
+        {sort.name}
       </span>
       {open && (
         <ul className={style.list}>
-          {sortList.map((item) => (
+          {sortList.map((obj) => (
             <li
-              className={item === selected ? style.selected : ''}
-              key={item}
-              onClick={() => changeSelected(item)}>
-              {item}
+              className={obj.name === sort.name ? style.selected : ''}
+              key={obj.name}
+              onClick={() => changeSelected(obj)}>
+              {obj.name}
             </li>
           ))}
         </ul>

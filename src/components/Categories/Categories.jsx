@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import style from './Categories.module.css';
 import classnames from 'classnames';
 
-const Categories = () => {
+const Categories = ({ changeCategoryId, active }) => {
   const listCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-  const [active, setActive] = useState(0);
+
   return (
     <div>
       <ul className={style.list}>
@@ -12,7 +12,7 @@ const Categories = () => {
           <li
             className={classnames(active === ind ? style.active : '', style.list__item)}
             key={item}
-            onClick={() => setActive(ind)}>
+            onClick={() => changeCategoryId(ind)}>
             {item}
           </li>
         ))}
