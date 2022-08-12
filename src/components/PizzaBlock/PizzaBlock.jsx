@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import style from './PizzaBlock.module.css';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
-const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types }) => {
+const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types, id }) => {
   const pizzaTypes = ['тонкое', 'традиционное'];
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
   return (
     <div className={style.pizza__block}>
-      <img className={style.image} src={imageUrl} alt="pizza" />
-      <h4 className={style.title}>{title}</h4>
+      <Link to={`/cart/${id}`}>
+        <img className={style.image} src={imageUrl} alt="pizza" />
+        <h4 className={style.title}>{title}</h4>
+      </Link>
       <div className={style.characteristics}>
         <div className={style.pizza__types}>
           {types.map((id) => (
