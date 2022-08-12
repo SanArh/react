@@ -8,7 +8,7 @@ const Pizza = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`https://62e395043c89b95396cb6c94.mockapi.io/items/g${params.id}`)
+      .get(`https://62e395043c89b95396cb6c94.mockapi.io/items/${params.id}`)
       .then(({ data }) => setPizza(data))
       .catch((err) => {
         alert(err.message);
