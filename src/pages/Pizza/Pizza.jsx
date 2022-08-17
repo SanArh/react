@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import style from './Pizza.module.css';
 
 const Pizza = () => {
-  const [pizza, setPizza] = useState();
+  const [pizza, setPizza] = useState(null);
+  console.log(pizza);
   const params = useParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -15,7 +17,20 @@ const Pizza = () => {
         navigate('/');
       });
   }, []);
-  return <div>{params.id}</div>;
+  return (
+    <div>
+      {pizza && (
+        <>
+          <img src={pizza.imageUrl} alt="pizza" />
+          <h2 className={style.title}>{pizza.title}</h2>
+          <p className={style.price}>{pizza.price} ₽</p>
+          <Link className={style.btn} to="/">
+            Назад
+          </Link>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Pizza;

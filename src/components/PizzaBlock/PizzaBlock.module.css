@@ -8,11 +8,13 @@
 .title {
   font-size: 20px;
   margin-bottom: 18px;
+  color: #000;
 }
 .characteristics {
   background-color: rgb(237, 234, 230);
   padding: 8px;
   border-radius: 8px;
+  cursor: pointer;
 }
 .pizza__types {
   display: flex;
@@ -51,6 +53,7 @@
   background-color: #fff;
   color: rgb(39, 203, 203);
   font-size: 16px;
+  cursor: pointer;
 }
 .btn:hover {
   background-color: rgb(39, 203, 203);
