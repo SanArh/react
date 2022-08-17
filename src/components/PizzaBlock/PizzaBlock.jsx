@@ -2,11 +2,21 @@ import React, { useState } from 'react';
 import style from './PizzaBlock.module.css';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPizza, addTotalPrice } from '../../redux/slices/cartSlice';
 
 const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types, id }) => {
   const pizzaTypes = ['тонкое', 'традиционное'];
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
+  const dispatch = useDispatch();
+  const pizzas = useSelector((state) => state.pizzas.items);
+
+  const onButtonClick = (id, price) => {
+    const addedPizza = pizzas.find((el) => el.id === id);
+    dispatch(addPizza(addedPizza));
+    dispatch(addTotalPrice(price));
+  };
 
   return (
     <div className={style.pizza__block}>
@@ -40,7 +50,7 @@ const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types, id
       </div>
       <div className={style.price__block}>
         <div className={style.price}>от {price} ₽</div>
-        <button className={style.btn}>
+        <button className={style.btn} onClick={() => onButtonClick(id, price)}>
           <span className={style.plus}>+</span>
           <span>Добавить</span>
         </button>
