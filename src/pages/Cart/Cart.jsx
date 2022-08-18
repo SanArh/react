@@ -4,26 +4,31 @@ import style from './Cart.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../../components/CartItem/CartItem';
 import CartEmpty from '../../components/CartEmpty/CartEmpty';
+import cn from 'classnames';
+import { clearCart } from '../../redux/slices/cartSlice';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cart);
-  console.log(totalPrice);
   if (!totalPrice) {
     return <CartEmpty />;
   }
   return (
-    <div>
-      <div>
+    <div className={style.cart}>
+      <div className={style.header}>
         <h2>Корзина</h2>
-        <div>Очистить корзину</div>
+        <div className={style.clean} onClick={() => dispatch(clearCart())}>
+          Очистить корзину
+        </div>
       </div>
       {items.map((pizza) => (
         <CartItem {...pizza} key={pizza.id} />
       ))}
-      <div>
-        <Link to="/">Back</Link>
-        <button>Оплатить сейчас</button>
+      <div className={style.footer}>
+        <Link to="/" className={cn(style.btn, style.btn__back)}>
+          Назад
+        </Link>
+        <div className={cn(style.btn, style.btn__pay)}>Оплатить сейчас</div>
       </div>
     </div>
   );

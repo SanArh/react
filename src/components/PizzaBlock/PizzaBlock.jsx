@@ -10,11 +10,10 @@ const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types, id
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
   const dispatch = useDispatch();
-  const pizzas = useSelector((state) => state.pizzas.items);
+  const addedPizza = useSelector((state) => state.pizzas.items.find((el) => el.id === id));
 
-  const onButtonClick = (id, price) => {
-    const addedPizza = pizzas.find((el) => el.id === id);
-    dispatch(addPizza(addedPizza));
+  const onButtonClick = ({}) => {
+    dispatch(addPizza({ id, imageUrl, price, title, sizes }));
     dispatch(addTotalPrice(price));
   };
 
@@ -50,7 +49,7 @@ const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types, id
       </div>
       <div className={style.price__block}>
         <div className={style.price}>от {price} ₽</div>
-        <button className={style.btn} onClick={() => onButtonClick(id, price)}>
+        <button className={style.btn} onClick={() => onButtonClick(price)}>
           <span className={style.plus}>+</span>
           <span>Добавить</span>
         </button>
