@@ -59,10 +59,25 @@
   background-color: rgb(39, 203, 203);
   color: #fff;
 }
+.btn:hover .count {
+  background-color: #fff;
+  color: rgb(39, 203, 203);
+}
 .plus {
   font-size: 23px;
   margin-right: 5px;
 }
 .active {
   background-color: #fff;
+}
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: rgb(39, 203, 203);
+  color: #fff;
+  margin-left: 5px;
 }

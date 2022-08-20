@@ -2,7 +2,7 @@ import React from 'react';
 import style from './CartItem.module.css';
 import cn from 'classnames';
 
-const CartItem = ({ imageUrl, title, price }) => {
+const CartItem = ({ imageUrl, title, price, type, count }) => {
   return (
     <div className={style.block}>
       <div>
@@ -10,7 +10,7 @@ const CartItem = ({ imageUrl, title, price }) => {
       </div>
       <div className={style.info}>
         <h3>{title}</h3>
-        <p>dbj</p>
+        <p>{type}</p>
       </div>
       <div className={style.count}>
         <button className={style.btn}>
@@ -25,7 +25,7 @@ const CartItem = ({ imageUrl, title, price }) => {
               fill="rgb(39, 203, 203)"></path>
           </svg>
         </button>
-        <span>0</span>
+        <span>{count}</span>
         <button className={style.btn}>
           <svg
             width="10"

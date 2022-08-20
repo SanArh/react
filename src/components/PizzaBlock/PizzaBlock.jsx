@@ -5,15 +5,25 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPizza, addTotalPrice } from '../../redux/slices/cartSlice';
 
-const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types, id }) => {
+const PizzaBlock = ({ imageUrl, price, sizes, title, types, id }) => {
   const pizzaTypes = ['тонкое', 'традиционное'];
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
   const dispatch = useDispatch();
-  const addedPizza = useSelector((state) => state.pizzas.items.find((el) => el.id === id));
+  const findItem = useSelector((state) => state.cart.items.find((obj) => obj.id === id));
+  const addedPizzas = findItem ? findItem.count : 0;
 
-  const onButtonClick = ({}) => {
-    dispatch(addPizza({ id, imageUrl, price, title, sizes }));
+  const onButtonClick = () => {
+    dispatch(
+      addPizza({
+        id,
+        imageUrl,
+        price,
+        title,
+        type: pizzaTypes[activeType],
+        count: 0,
+      }),
+    );
     dispatch(addTotalPrice(price));
   };
 
@@ -25,12 +35,12 @@ const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types, id
       </Link>
       <div className={style.characteristics}>
         <div className={style.pizza__types}>
-          {types.map((id) => (
+          {types.map((type, id) => (
             <span
               onClick={() => setActiveType(id)}
               className={classNames(id === activeType ? style.active : '', style.pizza__type)}
-              key={id}>
-              {pizzaTypes[id]}
+              key={type}>
+              {pizzaTypes[type]}
             </span>
           ))}
         </div>
@@ -52,6 +62,7 @@ const PizzaBlock = ({ category, imageUrl, price, rating, sizes, title, types, id
         <button className={style.btn} onClick={() => onButtonClick(price)}>
           <span className={style.plus}>+</span>
           <span>Добавить</span>
+          {addedPizzas > 0 && <b className={style.count}>{addedPizzas}</b>}
         </button>
       </div>
     </div>
