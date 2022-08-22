@@ -8,6 +8,7 @@ export const getPizzas = createAsyncThunk('pizzas/fetchStatus', async (params) =
       categoryId > 0 ? `category=${categoryId}` : ''
     }&sortBy=${sortValue}`,
   );
+  console.log(response);
   return response.data;
 });
 

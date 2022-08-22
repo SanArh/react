@@ -16,16 +16,35 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, count: 1 });
       }
+      state.totalPrice = state.items.reduce((summ, item) => summ + item.price * item.count, 0);
     },
-    addTotalPrice: (state, action) => {
-      state.totalPrice = state.totalPrice + action.payload;
+    removeItems: (state, action) => {
+      let isDelete = window.confirm('Ты действительно желаешь удалить товар?');
+      if (isDelete) {
+        state.items = state.items.filter((obj) => obj.id !== action.payload);
+        state.totalPrice = state.items.reduce((summ, item) => summ + item.price * item.count, 0);
+      }
+    },
+    minusItem: (state, action) => {
+      const findItem = state.items.find((obj) => obj.id === action.payload);
+      findItem.count--;
+      state.totalPrice = state.items.reduce((summ, item) => summ + item.price * item.count, 0);
+    },
+    plusItem: (state, action) => {
+      const findItem = state.items.find((obj) => obj.id === action.payload);
+      findItem.count++;
+      state.totalPrice = state.items.reduce((summ, item) => summ + item.price * item.count, 0);
     },
     clearCart: (state) => {
-      state.items = [];
-      state.totalPrice = 0;
+      let isDelete = window.confirm('Очистить корзину?');
+      if (isDelete) {
+        state.items = [];
+        state.totalPrice = 0;
+      }
     },
   },
 });
 
-export const { addPizza, addTotalPrice, clearCart } = cartSlice.actions;
+export const { addPizza, addTotalPrice, clearCart, removeItems, minusItem, plusItem } =
+  cartSlice.actions;
 export default cartSlice.reducer;

@@ -39,6 +39,13 @@
   align-items: center;
   gap: 17px;
 }
+.btn:disabled {
+  border-color: #ddd;
+  background-color: #fff;
+}
+.btn:disabled svg path {
+  fill: #ddd;
+}
 .count span {
   font-size: 22px;
   font-weight: 600;

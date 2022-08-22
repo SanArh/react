@@ -2,13 +2,16 @@ import React from 'react';
 import logo from '../../assets/pizza-logo.jpg';
 import style from './Header.module.css';
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const location = useLocation();
+  const { items, totalPrice } = useSelector((state) => state.cart);
+  const totalCount = items.reduce((summ, item) => summ + item.count, 0);
   return (
     <div className={style.header}>
       <div className={style.header__logo}>
-        <img className={style.logo__img} src={logo}></img>
+        <img className={style.logo__img} src={logo} alt="logo"></img>
         <div>
           <h1 className={style.logo__title}>pizza</h1>
           <p className={style.logo__suptitle}>вкуснейшая пицца на планете</p>
@@ -54,7 +57,7 @@ const Header = () => {
       <div className={style.card}>
         {location.pathname !== '/cart' && (
           <Link to="/cart" className={style.card__btn} href="#">
-            <span>0 ₽</span>
+            <span>{totalPrice} ₽</span>
             <div className={style.separater}></div>
             <svg
               width="18"
@@ -81,7 +84,7 @@ const Header = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"></path>
             </svg>
-            <span>0</span>
+            <span>{totalCount}</span>
           </Link>
         )}
       </div>

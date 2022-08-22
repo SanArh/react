@@ -10,6 +10,8 @@ import { clearCart } from '../../redux/slices/cartSlice';
 const Cart = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cart);
+  const totalCount = items.reduce((summ, item) => summ + item.count, 0);
+
   if (!totalPrice) {
     return <CartEmpty />;
   }
@@ -24,6 +26,14 @@ const Cart = () => {
       {items.map((pizza) => (
         <CartItem {...pizza} key={pizza.id} />
       ))}
+      <div className={style.order__info}>
+        <div>
+          Всего пицц: <b>{totalCount} шт.</b>
+        </div>
+        <div>
+          Сумма заказа: <span className={style.price}>{totalPrice} ₽</span>
+        </div>
+      </div>
       <div className={style.footer}>
         <Link to="/" className={cn(style.btn, style.btn__back)}>
           Назад

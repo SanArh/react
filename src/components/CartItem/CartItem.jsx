@@ -1,8 +1,12 @@
 import React from 'react';
 import style from './CartItem.module.css';
 import cn from 'classnames';
+import { minusItem, removeItems, plusItem } from '../../redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
-const CartItem = ({ imageUrl, title, price, type, count }) => {
+const CartItem = ({ imageUrl, title, price, type, count, id }) => {
+  const dispatch = useDispatch();
+  const itemPrice = price * count;
   return (
     <div className={style.block}>
       <div>
@@ -13,7 +17,11 @@ const CartItem = ({ imageUrl, title, price, type, count }) => {
         <p>{type}</p>
       </div>
       <div className={style.count}>
-        <button className={style.btn}>
+        {/* minus button  */}
+        <button
+          disabled={count > 1 ? false : true}
+          className={style.btn}
+          onClick={() => dispatch(minusItem(id))}>
           <svg
             width="10"
             height="10"
@@ -26,7 +34,8 @@ const CartItem = ({ imageUrl, title, price, type, count }) => {
           </svg>
         </button>
         <span>{count}</span>
-        <button className={style.btn}>
+        {/* plus button */}
+        <button className={style.btn} onClick={() => dispatch(plusItem(id))}>
           <svg
             width="10"
             height="10"
@@ -42,9 +51,12 @@ const CartItem = ({ imageUrl, title, price, type, count }) => {
           </svg>
         </button>
       </div>
-      <div className={style.price}>{price} ₽</div>
+      <div className={style.price}>{itemPrice} ₽</div>
       <div className={style.delete}>
-        <button className={cn(style.btn, style.btn__remove)}>
+        {/* remove button */}
+        <button
+          className={cn(style.btn, style.btn__remove)}
+          onClick={() => dispatch(removeItems(id))}>
           <svg
             width="10"
             height="10"

@@ -52,3 +52,13 @@
 .btn__pay:hover {
   opacity: 1;
 }
+.order__info {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+  font-size: 22px;
+}
+.price {
+  font-weight: 700;
+  color: rgb(39, 203, 203);
+}

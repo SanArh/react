@@ -5,7 +5,8 @@ import Sort from '../../components/Sort/Sort';
 import { getPizzas } from '../../redux/slices/pizzaSlice';
 import style from './Home.module.css';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
-import { setCategory, setSortBy } from '../../redux/slices/filterSlice';
+import { setCategory } from '../../redux/slices/filterSlice';
+import Pagination from '../../components/Pagination/Pagination';
 
 const Home = () => {
   const pizzas = useSelector((state) => state.pizzas.items);
@@ -32,6 +33,7 @@ const Home = () => {
           <PizzaBlock key={item.id} {...item} />
         ))}
       </div>
+      <Pagination />
     </div>
   );
 };
