@@ -4,6 +4,7 @@ import Cart from './pages/Cart/Cart';
 import Home from './pages/Home/Home';
 import { Routes, Route } from 'react-router-dom';
 import Pizza from './pages/Pizza/Pizza';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/cart/:id" element={<Pizza />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </div>
