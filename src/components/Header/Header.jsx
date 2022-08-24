@@ -3,6 +3,7 @@ import logo from '../../assets/pizza-logo.jpg';
 import style from './Header.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Search from '../Search/Search';
 
 const Header = () => {
   const location = useLocation();
@@ -50,7 +51,7 @@ const Header = () => {
               y1="27"
               y2="20.366"></line>
           </svg>
-          <input className={style.input} type="text" placeholder="поиск пицц..." />
+          <Search />
         </div>
       )}
 

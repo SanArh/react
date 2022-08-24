@@ -12,11 +12,12 @@ const Home = () => {
   const pizzas = useSelector((state) => state.pizzas.items);
   const categoryId = useSelector((state) => state.filter.category);
   const sortValue = useSelector((state) => state.filter.sort.sortValue);
+  const searchValue = useSelector((state) => state.filter.searchValue);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPizzas({ categoryId, sortValue }));
-  }, [categoryId, sortValue]);
+    dispatch(getPizzas({ categoryId, sortValue, searchValue }));
+  }, [categoryId, sortValue, searchValue]);
 
   const changeCategoryId = (id) => {
     dispatch(setCategory(id));
