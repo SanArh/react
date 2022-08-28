@@ -24,7 +24,6 @@ const PizzaBlock = ({ imageUrl, price, sizes, title, types, id }) => {
         count: 0,
       }),
     );
-    // dispatch(addTotalPrice(price));
   };
 
   return (

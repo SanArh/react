@@ -23,19 +23,19 @@ export const pizzaSlice = createSlice({
       state.pizzas = action.payload;
     },
   },
-  extraReducers: {
-    [getPizzas.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(getPizzas.pending, (state, action) => {
       state.loading = 'pending';
       state.items = [];
-    },
-    [getPizzas.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getPizzas.fulfilled, (state, action) => {
       state.loading = 'succeeded';
       state.items = action.payload;
-    },
-    [getPizzas.rejected]: (state) => {
+    });
+    builder.addCase(getPizzas.rejected, (state, action) => {
       state.loading = 'error';
       state.items = [];
-    },
+    });
   },
 });
 

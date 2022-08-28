@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { countTotalPrice } from '../../units/countTotalPrice';
+import { getItemsfromLocalStorage } from '../../units/getItemsfromLocalStorage';
+
+const { totalPrice, items } = getItemsfromLocalStorage();
 
 const initialState = {
-  totalPrice: 0,
-  items: [],
+  totalPrice,
+  items,
 };
-
 const cartSlice = createSlice({
   name: 'cartSlice',
   initialState,
@@ -16,7 +19,7 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, count: 1 });
       }
-      state.totalPrice = state.items.reduce((summ, item) => summ + item.price * item.count, 0);
+      state.totalPrice = countTotalPrice(state.items);
     },
     removeItems: (state, action) => {
       let isDelete = window.confirm('Ты действительно желаешь удалить товар?');

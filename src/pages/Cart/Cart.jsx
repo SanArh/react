@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './Cart.module.css';
+import '../../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../../components/CartItem/CartItem';
 import CartEmpty from '../../components/CartEmpty/CartEmpty';
@@ -28,17 +29,17 @@ const Cart = () => {
       ))}
       <div className={style.order__info}>
         <div>
-          Всего пицц: <b>{totalCount} шт.</b>
+          Всего пицц: <div>{totalCount} шт.</div>
         </div>
         <div>
-          Сумма заказа: <span className={style.price}>{totalPrice} ₽</span>
+          Сумма заказа: <div className={style.price}>{totalPrice} ₽</div>
         </div>
       </div>
       <div className={style.footer}>
-        <Link to="/" className={cn(style.btn, style.btn__back)}>
+        <Link to="/" className={cn(style.btn, style.btn__back, 'btn')}>
           Назад
         </Link>
-        <div className={cn(style.btn, style.btn__pay)}>Оплатить сейчас</div>
+        <div className={cn(style.btn, style.btn__pay, 'btn')}>Оплатить сейчас</div>
       </div>
     </div>
   );

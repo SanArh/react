@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import style from './Pizza.module.css';
+import '../../App.css';
+import cn from 'classnames';
 
 const Pizza = () => {
   const [pizza, setPizza] = useState(null);
-  console.log(pizza);
   const params = useParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,10 +22,10 @@ const Pizza = () => {
     <div>
       {pizza && (
         <>
-          <img src={pizza.imageUrl} alt="pizza" />
+          <img className={style.img} src={pizza.imageUrl} alt="pizza" />
           <h2 className={style.title}>{pizza.title}</h2>
           <p className={style.price}>{pizza.price} ₽</p>
-          <Link className={style.btn} to="/">
+          <Link className={cn(style.btn, 'btn')} to="/">
             Назад
           </Link>
         </>
